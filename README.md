@@ -35,6 +35,8 @@ bin/console memory:reset
 
 ## Main files and dirs
 
+Quick discover of main dir for quick overview
+
 * webpack.config.js is defining two compiled files :
     * app (for whole website) : assets/app.js, memory css
     * memory (specific to the game - vuejs) : assets/vue/src/main.js
@@ -50,7 +52,8 @@ This app is not suitable for production env. out of the box ;)
 
 ## TODO
 
-* This project could probably be optimized in many ways :
-    * lots of external libs : lodash could probably be avoided as we use only few functions...
-    * bootstrap is not optimized to only load components we use...
-    * Etc.
+This project could probably be optimized in many ways :
+
+* lots of external libs : lodash could probably be avoided as we use only few functions...
+* bootstrap is not optimized to only load components we use...
+* etc...
