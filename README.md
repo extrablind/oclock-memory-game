@@ -7,7 +7,7 @@ For educational purpose.
 
 ``` bash
 # Clone the repo
-git clone oclock-memory-game
+git clone https://github.com/extrablind/oclock-memory-game
 # Go to newly created dir
 cd oclock-memory-game
 # Install dependencies
@@ -28,9 +28,10 @@ symfony serve --port=2140 --no-tls
 # OR if symfony app is not installed, start build in php server with document-root in ./public dir. (not suitable for production)
 php -S localhost:2140 -t ./public/
 
-# OPTONNAL (when needed) reset the score and time : cleanup table that save scores
-bin/console memory:rese
+# OPTONNAL (when needed) reset the score and time : truncate table that save scores
+bin/console memory:reset
 ```
+
 
 ## Main files and dirs
 
@@ -41,9 +42,11 @@ bin/console memory:rese
 * Templates (sf views) are in ./templates/Game/* with layout ./templates/base.html.twig
 * Parts html template are in ./templates/Parts for menu : shared html parts accross pages, well we'have only one page for the moment
 
+
 ## Carefull
 
 This app is not suitable for production env. out of the box ;)
+
 
 ## TODO
 
