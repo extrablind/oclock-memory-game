@@ -42,7 +42,7 @@ Quick discover of main dir for quick overview
     * memory (specific to the game - vuejs) : assets/vue/src/main.js
 * Vue files are in ./assets/vue/
 * Templates (sf views) are in ./templates/Game/* with layout ./templates/base.html.twig
-* Parts html template are in ./templates/Parts for menu : shared html parts accross pages, well we'have only one page for the moment
+* Parts html template are in ./templates/Parts for menu : shared html parts accross pages, well we've only one page for the moment
 
 
 ## Carefull
