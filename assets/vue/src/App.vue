@@ -40,7 +40,7 @@
             </div>
         </div>
         <!-- Aside area : score, restart...etc -->
-        <div class="col-4">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" v-bind:style="{ width: progress+ '%' }" v-bind:aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100">{{progress}}%</div>
             </div>
@@ -186,11 +186,11 @@ export default {
             status: 'begin',
             // Access constant in template
             NB_PAIRS: NB_PAIRS,
-            // High Scores list displayed at the end of game
+            // High Scores list array
             scores: [],
-            // User input at the end of the game
+            // User input at the end of the game has one field : username, we need to bind (link) this value
             username: '',
-            // Disable username input button
+            // Disable username input button when score is saved : avoid double score saving
             disableUsernameInput: false,
             // A string to display messages
             message: '',
@@ -211,7 +211,7 @@ export default {
             this.cardsInGame = []
             // Ensure to kill the countdown
             clearInterval(this.countdown);
-            // Randomize the whole series, all the cards
+            // Randomize the whole series, all the cards with lodash lib
             let randomizedCards = _.shuffle(CARDS);
             // Reduce the array to NB_PAIRS card : for exemple we need 28 cards so 14 is to be defined, but we can change difficulty  by editing NB_PAIRS constant if we stay under NB_PAIRS.length
             let reduce = randomizedCards.slice(0, NB_PAIRS);
@@ -221,8 +221,6 @@ export default {
             let cards = _.concat(clone, reduce)
             // Add some more property to our playing cards
             cards.forEach(function(element, i) {
-                // element.winned = false;
-                // element.selected = false;
                 element.status = 'unselected';
                 // Adding a numeric index for comparaison
                 element.index = i;
@@ -246,7 +244,7 @@ export default {
             this.retrieveLastScores();
         },
         retrieveLastScores: function() {
-            // GET ajax request
+            // GET request using axios
             axios.get('/game/oclock-memory/high-score')
                 .then(
                     response => {
@@ -288,7 +286,6 @@ export default {
                         // Destroy interval, it will be re-created on next game
                         clearInterval(that.countdown);
                     }
-
                 },
                 // Interval is executed every second (1000ms)
                 1000);
