@@ -1,0 +1,14 @@
+// Change appearance of nav item
+
+.navbar-nav > li.nav-item {
+    background: $primary;
+
+    a {
+        color: white;
+
+        &:hover {
+            // Background is lighter than original $primary color. Also try darken().
+            background-color: lighten($primary, 20);
+        }
+    }
+}

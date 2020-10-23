@@ -1,0 +1,144 @@
+/*
+Board game
+*/
+.boardGame {
+    padding: 20px 0 12px 20px;
+    background: grey;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    width: 98%;
+    // When game is over, add class boardBlurry wll  blur the game board
+    &.boardBlurry {
+        filter: blur(2px);
+    }
+}
+// Sprite management
+$memoryGameSpriteX: 0;
+/*
+This will increment global var $memoryGameSpriteX with amount (px) in param.
+Imgs sprite are every 100px
+See sass website for help on vars definition and function : https://sass-lang.com/
+*/
+@mixin incrementPosition($increment : -100px) {
+    $memoryGameSpriteX: ($memoryGameSpriteX + $increment) !global;
+    background-position: 0 $memoryGameSpriteX;
+}
+// Bordered card container
+
+.playingCardContainer {
+    margin: 0 5px 5px 0;
+    box-shadow: inset 0 0 23px grey;
+    border-radius: 5px;
+    border: 7px solid darken(grey, 20);
+    display: inline-block;
+    width: 114px;
+    height: 114px;
+    background: lighten(grey, 20);
+
+    &:hover {
+        border-color: lighten(grey, 30);
+    }
+    // The real card
+    .playingCard {
+        background-image: url("../../img/cards.png");
+        display: inline-block;
+        width: 100px !important;
+        height: 100px !important;
+        cursor: pointer;
+        opacity: 0;
+        // Different status of a single card
+        &.selected {
+            opacity: 1;
+            transition: opacity 250ms linear;
+        }
+
+        &.unselected {
+            opacity: 0;
+            transition-duration: 250ms;
+            transition-delay: 250ms;
+            transition-property: opacity;
+        }
+
+        &.winned {
+            // lose color by 50% to distinguish winned cards
+            filter: grayscale(50%);
+            opacity: 1;
+            transition: opacity 0.33s linear;
+        }
+        /*
+        Sprite definition, use mixin function (top of file),
+        Increment is the same for each image, default parameter will be enough
+        */
+        &.card-redApple {
+            @include incrementPosition($memoryGameSpriteX);
+        }
+
+        &.card-banana {
+            @include incrementPosition();
+        }
+
+        &.card-orange {
+            @include incrementPosition();
+        }
+
+        &.card-greenLemon {
+            @include incrementPosition();
+        }
+
+        &.card-granada {
+            @include incrementPosition();
+        }
+
+        &.card-apricot {
+            @include incrementPosition();
+        }
+
+        &.card-yellowLemon {
+            @include incrementPosition();
+        }
+
+        &.card-strawberry {
+            @include incrementPosition();
+        }
+
+        &.card-greenApple {
+            @include incrementPosition();
+        }
+
+        &.card-peach {
+            @include incrementPosition();
+        }
+
+        &.card-grappes {
+            @include incrementPosition();
+        }
+
+        &.card-watermelon {
+            @include incrementPosition();
+        }
+
+        &.card-plum {
+            @include incrementPosition();
+        }
+
+        &.card-pear {
+            @include incrementPosition();
+        }
+
+        &.card-redCherry {
+            @include incrementPosition();
+        }
+
+        &.card-raspberry {
+            @include incrementPosition();
+        }
+
+        &.card-mongo {
+            @include incrementPosition();
+        }
+
+        &.card-yellowCherry {
+            @include incrementPosition();
+        }
+    }
+}

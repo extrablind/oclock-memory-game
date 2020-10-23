@@ -1,0 +1,21 @@
+{# Extends should  #}
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid" style="margin-top:130px;">
+        {# Vuejs App : see assets/vue/src/main.js to begin #}
+        <div id="app"></div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {# !!! Development version of vue js, for prod use : https://cdn.jsdelivr.net/npm/vue #}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    {#
+    Include memory game vuejs component reacting with div#app container up
+    See webpack.config.js and encore bundle for symfony
+    #}
+    {{ encore_entry_script_tags('memory') }}
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

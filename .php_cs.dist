@@ -1,0 +1,28 @@
+<?php
+
+// This is a file to harmonize code among coders monkeys.
+// See : https://github.com/FriendsOfPHP/PHP-CS-Fixer
+// Plugin for atom (or other IDE) exists ... look for it.
+if (!file_exists(__DIR__.'/src')) {
+    exit(0);
+}
+
+return PhpCsFixer\Config::create()
+->setRules([
+    '@Symfony'          => true,
+    'array_syntax'      => ['syntax' => 'short'],
+    'array_indentation' => true,
+    // Symfony overwritings
+    'binary_operator_spaces' => [
+        'align_double_arrow' => true,
+        'align_equals'       => true,
+    ],
+])
+->setRiskyAllowed(false)
+->setFinder(
+    PhpCsFixer\Finder::create()
+    ->in(__DIR__.'/src')
+    ->append([__FILE__])
+    ->notPath('#/Fixtures/#')
+    )
+    ;

@@ -1,0 +1,6 @@
+@import "./variables.scss"; // Import custom vars (overrides Bootstrap defaults with ours)
+@import "./bootstrap/scss/bootstrap.scss"; // Import bootstrap from local cloned dir from github. Not included as sub repo. Could also be integrated as a yarn dependency
+@import "./navbar.scss"; // Additional rules for top bar.
+@import "./bootswatch-flatly.scss"; // Additonnal theme vars or overriding scss rules from bootstrap : see bootswatch https://bootswatch.com/
+// Memory game sass file, could also be imported directly in vuejs app.
+@import './memory/main.scss';
