@@ -1,6 +1,7 @@
 # Oclock Memory Game
 
 This is a demo memory game featuring Vue.js and Symfony.
+
 For educational purpose.
 
 ## Install
@@ -32,8 +33,7 @@ php -S localhost:2140 -t ./public/
 bin/console memory:reset
 ```
 
-
-## Main files and dirs
+## Main files and dirs
 
 Quick discover of main dir for quick overview
 
@@ -50,7 +50,7 @@ Quick discover of main dir for quick overview
 This app is not suitable for production env. out of the box ;)
 
 
-## TODO
+## TODO
 
 This project could probably be optimized in many ways :
 
