@@ -11,6 +11,7 @@ For educational purpose.
 git clone https://github.com/extrablind/oclock-memory-game
 # Go to newly created dir
 cd oclock-memory-game
+
 # Install dependencies
 composer install
 # Create database
@@ -25,8 +26,7 @@ yarn encore production
 
 # Start symfony server
 symfony serve --port=2140 --no-tls
-
-# OR if symfony app is not installed, start build in php server with document-root in ./public dir. (not suitable for production)
+# OR if symfony command is not installed, start build-in PHP server with document-root in ./public dir. (not suitable for production)
 php -S localhost:2140 -t ./public/
 
 # OPTONNAL (when needed) reset the score and time : truncate table that save scores
@@ -35,7 +35,7 @@ bin/console memory:reset
 
 ## Main files and dirs
 
-Quick discover of main dir for quick overview
+Quick overview of main dirs
 
 * webpack.config.js is defining two compiled files :
     * app (for whole website) : assets/app.js, memory css
@@ -47,13 +47,12 @@ Quick discover of main dir for quick overview
 
 ## Carefull
 
-This app is not suitable for production env. out of the box ;)
-
+This app is not suitable for production environment out of the box ;)
 
 ## TODO
 
 This project could probably be optimized in many ways :
 
-* lots of external libs : lodash could probably be avoided as we use only few functions...
-* bootstrap is not optimized to only load components we use...
+* Reduce external libs : lodash could probably be avoided, or optimized as we use only few functions...
+* Bootstrap is not optimized to only load components we use...
 * etc...
