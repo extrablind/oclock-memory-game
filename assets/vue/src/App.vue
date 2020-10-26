@@ -5,7 +5,7 @@
 
             <!-- Display this on win or lose game only -->
             <div class="winLoseContainer" v-if="status=='win' || status=='lose'">
-                <h3 v-if="status=='win'">It's a win ! Congratulation !</h3>
+                <h3 v-if="status=='win'">It's a win ! Congratulations !</h3>
                 <h3 v-if="status=='lose'">Time is up, you lose ! Sorry {{username}} ! </h3>
                 <div class="input-group" v-if="status=='win'">
                     <input type="text" v-model="username" class="form-control" placeholder="Your 3 letters name for posterity..." name="name" maxlength="3" />
@@ -29,7 +29,7 @@
                     <!-- Vary class depending of the card status that changes during game -->
                     <span v-bind:class="{
                         'selected': card.status =='selected',
-                        'winned': card.status =='winned',
+                        'won': card.status =='won',
                         'unselected': card.status =='unselected',
                         // Set to true = always visble
                         'playingCard':true ,
@@ -50,7 +50,7 @@
             <h4>Score : <small>{{score}}</small></h4>
             <h4>Turn : <small>#{{turn}}</small></h4>
             <h4>Remaining Time : <small>{{timer}} sec.</small></h4>
-            <h4>Pairs found :<small> {{winnedPairs}} / {{NB_PAIRS}}</small></h4>
+            <h4>Pairs found :<small> {{wonPairs}} / {{NB_PAIRS}}</small></h4>
 
             <p v-if="status == 'pending'"></p>
             <p>{{message}}</p>
@@ -180,7 +180,7 @@ export default {
             // 0-100 indicator for progress bar, see begin function()
             progress: 0,
             // Number of founded pair of card, to calculate the score and the end of game
-            winnedPairs: 0,
+            wonPairs: 0,
             // A status : playing, pending, win, lose for easy display div in template
             // TODO : Add a pause button and a pause status
             status: 'begin',
@@ -231,7 +231,7 @@ export default {
             // This will override default values
             this.started = false;
             this.score = 0;
-            this.winnedPairs = 0;
+            this.wonPairs = 0;
             this.timer = '-';
             this.turn = 1;
             this.progress = 0;
@@ -293,12 +293,12 @@ export default {
         // Method to get score based on several game vars
         reCalculateScore: function() {
             /*
-                Score is a ratio between try to guess (turns) and really winned pair.
+                Score is a ratio between try to guess (turns) and really won pair.
                 This is ponderated by the remaining progress bar (time representation)
                     if we've found a pair without too much try guess : more point
                     if we've found a pair at a lower time  (rapidity) : more point
             */
-            let score = Math.floor(this.winnedPairs / this.turn + (100 - this.progress));
+            let score = Math.floor(this.wonPairs / this.turn + (100 - this.progress));
             // Increment current score
             this.score += score
             console.log("Adding to score : " + score + '. Score is now ' + this.score)
@@ -318,8 +318,8 @@ export default {
                 // Save game state
                 this.started = true;
             }
-            // We  have clicked on already winned card, do nothing
-            if (card.status == 'winned') {
+            // We  have clicked on already won card, do nothing
+            if (card.status == 'won') {
                 return;
             }
 
@@ -340,14 +340,14 @@ export default {
                 if (this.flipped[0].key === this.flipped[1].key) {
                     console.log("Winning this pair. Kitten are making a party !")
 
-                    // Mark cards as winned !
-                    this.message = "Winned pair " + card.name;
-                    card.status = 'winned';
-                    this.flipped[0].status = 'winned';
+                    // Mark cards as won !
+                    this.message = "Winning pair " + card.name;
+                    card.status = 'won';
+                    this.flipped[0].status = 'won';
 
                     // Increments pair found var.
-                    this.winnedPairs++
-                    // Calculate score every pair winned
+                    this.wonPairs++
+                    // Calculate score every pair won
                     this.reCalculateScore()
                 }
                 // Losing this pair
@@ -370,7 +370,7 @@ export default {
             // console.log("Continue playing a second card...");
             // }
             // We have found all pairs ! We win the game in time ! We are the champion  my friend !
-            if (this.winnedPairs === NB_PAIRS) {
+            if (this.wonPairs === NB_PAIRS) {
                 console.log('You win the game !! Kitten are in a hurry to go dancing !');
                 this.status = 'win'
                 // Extra points for a win ! Just for fun.

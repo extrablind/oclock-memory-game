@@ -59,8 +59,8 @@ See sass website for help on vars definition and function : https://sass-lang.co
             transition-property: opacity;
         }
 
-        &.winned {
-            // lose color by 50% to distinguish winned cards
+        &.won {
+            // lose color by 50% to distinguish won cards
             filter: grayscale(50%);
             opacity: 1;
             transition: opacity 0.33s linear;
